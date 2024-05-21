@@ -1,6 +1,7 @@
 package com.eureka.demo.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,17 @@ public class StudentServiceImpl implements StudentService{
 	public List<Student> getAllStudent() {
 		
 		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student updateStudent(int rollNo, Student student) {
+			Optional<Student> student_ById = studentRepository.findById(rollNo);
+			if(student_ById.isPresent()) return studentRepository.save(student);
+			
+			else System.out.println(rollNo + " is not present in record list");
+			
+			
+		return new Student();
 	}
 
 }

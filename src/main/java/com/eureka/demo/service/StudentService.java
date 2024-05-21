@@ -10,4 +10,6 @@ public interface StudentService {
 
 	public List<Student> getAllStudent();
 
+	public Student updateStudent(int rollNo, Student student);
+
 }

@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,12 @@ public class StudentController {
 	{
 		List<Student> studentList	= studentService.getAllStudent();
 		return new ResponseEntity<List<Student>>(studentList,HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateStudent/{rollNo}")
+	public ResponseEntity<Student> updateStudent(@PathVariable int rollNo, @RequestBody Student student)
+	{
+		student = studentService.updateStudent(rollNo, student);
+		return new ResponseEntity<Student>(student, HttpStatus.ACCEPTED);
 	}
 }
