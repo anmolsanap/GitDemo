@@ -38,4 +38,13 @@ public class StudentServiceImpl implements StudentService{
 		return new Student();
 	}
 
+	@Override
+	public void deleteStudent(int rollNo) {
+			Optional<Student> student = studentRepository.findById(rollNo);
+			if(student.isPresent()) 
+					studentRepository.deleteById(rollNo);
+			
+			else System.out.println(rollNo+" is not present so we are unable to delete");
+	}
+
 }
